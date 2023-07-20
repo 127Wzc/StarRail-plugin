@@ -1,4 +1,11 @@
 {
+  "1205": {
+    "id": "1205",
+    "name": "刃",
+    "rarity": "5",
+    "element": "风",
+    "path": "毁灭"
+  },
   "1001": {
     "id": "1001",
     "name": "三月七",
@@ -20807,6 +20814,11 @@
     ],
     "character_material": "guide/Nwflower/character_material/1109.png"
   },
+  "1111": {
+    "id": "1111",
+    "name": "卢卡",
+    "path": "虚无"
+  },
   "1201": {
     "id": "1201",
     "name": "青雀",
@@ -25428,6 +25440,11 @@
     "portrait": "image/character_portrait/1204.png",
     "character_overview": ["guide/OriginMirror/character_overview/1204.png"],
     "character_material": ""
+  },
+  "1205": {
+    "id": "1205",
+    "name": "刃",
+    "path": "毁灭"
   },
   "1206": {
     "id": "1206",
