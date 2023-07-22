@@ -57,7 +57,7 @@ export class Panel extends plugin {
     const matchResult = messageText.match(messageReg)
     const charName = matchResult ? matchResult[4] : null
     if (!charName) return await this.plmb(e)
-    if (charName === '更新' || matchResult[5]) return await this.update(e)
+    if (charName === '更新' || matchResult[5]) return false
     if (charName === '切换' || charName === '设置') return await this.changeApi(e)
     if (charName.includes('参考')) return false
     let uid = messageText.replace(messageReg, '')
@@ -219,6 +219,7 @@ export class Panel extends plugin {
       // 渲染数据
       await renderCard(e, renderData)
       // await e.reply( '更新面板数据成功' );
+      return false
     } catch (error) {
       logger.error('SR-panelApi', error)
       return await e.reply(error.message)
@@ -278,7 +279,7 @@ export class Panel extends plugin {
       const charInfo = data.filter(item => item.name === charName)[0]
       if (!charInfo) {
         throw Error(
-          `未查询到${uid}的角色数据，请检查角色是否放在了助战或者展柜\n请检查角色名是否正确,已设置的会有延迟,等待一段时间后重试~`
+          `未查询到uid：${uid}角色${charName}的数据，请检查角色是否放在了助战或者展柜\n请检查角色名是否正确,已设置的会有延迟,等待一段时间后重试~`
         )
       }
       return charInfo
