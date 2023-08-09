@@ -5,13 +5,16 @@ body {
 .container {
   width: 100%;
   color: #fce097;
-  background: url(../common/cont/bkg.png) center no-repeat;
-  background-size: cover;
+  background: url(../common/cont/bkg.png) center 0%/150% no-repeat;
   padding: 20px 35px 10px 35px;
 }
 
 ul {
   list-style: none;
+}
+
+.relic-list .item, .arms-box, .header .right .attribute-box .attribute-item, .header .left {
+  border: 2px solid #fce097;
 }
 
 .header {
@@ -20,7 +23,6 @@ ul {
 }
 .header .left {
   width: 382px;
-  border: 1px solid #fce097;
   border-radius: 50px 0;
   overflow: hidden;
   position: relative;
@@ -57,8 +59,7 @@ ul {
 }
 .header .right .info .star-soul {
   margin-left: auto;
-  margin-right: 10px;
-  border: 1px solid #fce097;
+  border: 2px solid #fce097;
   border-radius: 3px;
   font-size: 16px;
   padding: 0 5px;
@@ -67,12 +68,10 @@ ul {
 .header .right .dividing-line {
   height: 15px;
   margin: 6px 0px;
-  background: url(./resources/dividing-line.png) center no-repeat;
-  background-size: cover;
+  background: url(./resources/dividing-line.png) 0% 0%/100% no-repeat;
 }
 .header .right .attribute-box .attribute-item {
   height: 40px;
-  border: 1px solid #fce097;
   margin-top: 10px;
   border-radius: 5px;
   display: flex;
@@ -118,7 +117,6 @@ ul {
 .arms-box {
   margin-top: 10px;
   height: 105px;
-  border: 1px solid #fce097;
   border-radius: 30px 0;
   display: flex;
   align-items: center;
@@ -149,7 +147,7 @@ ul {
   justify-content: space-between;
 }
 .arms-box .arms .info .level-box div {
-  border: 1px solid #fce097;
+  border: 2px solid #fce097;
   border-radius: 5px;
   padding: 0 5px;
 }
@@ -204,7 +202,7 @@ ul {
 .arms-box .talent .item .img {
   width: 50px;
   height: 50px;
-  border: 1px solid #fce097;
+  border: 2px solid #fce097;
   border-radius: 50%;
   overflow: hidden;
   margin: 0 auto;
@@ -215,7 +213,7 @@ ul {
 }
 .arms-box .talent .item .level {
   margin: 0 auto;
-  border: 1px solid #fce097;
+  border: 2px solid #fce097;
   width: 30px;
   text-shadow: 1px 1px 1px #000;
   background: rgba(90, 90, 90, 0.5647058824);
@@ -246,7 +244,6 @@ ul {
 .relic-list .item {
   width: 400px;
   height: 170px;
-  border: 1px solid #fce097;
   border-left-width: 5px;
   border-radius: 30px 0;
   display: flex;
@@ -277,7 +274,7 @@ ul {
   position: absolute;
   right: -5px;
   bottom: -5px;
-  border: 1px solid #fce097;
+  border: 2px solid #fce097;
   border-radius: 5px;
   font-size: 12px;
   padding: 0 5px;
@@ -302,7 +299,7 @@ ul {
 .relic-list .item .info .score {
   margin-left: 10px;
   padding: 3px 10px;
-  border: 1px solid #fce097;
+  border: 2px solid #fce097;
   border-radius: 5px;
   font-size: 15px;
   margin-top: 8px;
@@ -323,6 +320,7 @@ ul {
   font-size: 15px;
   position: relative;
   color: #a5a5a5;
+  border-radius: 5px;
 }
 .relic-list .item .attribute .attribute-item.weight-normal {
   color: #fff;
@@ -330,8 +328,11 @@ ul {
 .relic-list .item .attribute .attribute-item.weight-heavy {
   color: #fce097;
 }
+.relic-list .item .attribute .attribute-item:nth-child(2n) {
+  background: rgba(40, 39, 35, 0.5921568627);
+}
 .relic-list .item .attribute .attribute-item:nth-child(2n+1) {
-  background: rgba(46, 45, 42, 0.3215686275);
+  background: rgba(81, 79, 74, 0.5725490196);
 }
 .relic-list .item .attribute .attribute-item.main_affix {
   font-size: 18px;
