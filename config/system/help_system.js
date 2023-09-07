@@ -87,7 +87,7 @@ export const helpList = [
       list :[
     {
       icon: 106,
-      title: '*希儿攻略(1 | 2 | 3 | 4 |5)',
+      title: '*希儿攻略(0 | 1 | 2 | 3 | 4 |5)',
       desc: '星铁角色攻略'
     }, {
       icon: 106,
@@ -144,11 +144,11 @@ export const helpList = [
     desc: '切换面板服务'
   } ,{
     icon: 85,
-    title: '*(强制)面板图更新(github)',
+    title: '*(强制)图像更新(github)',
     desc: '安装扩展图，需要一定时间，请勿重复执行'
   }, {
     icon: 85,
-    title: '*设置默认攻略(1 | 2 | 3 | 4 |5)',
+    title: '*设置默认攻略(0 | 1 | 2 | 3 | 4 |5)',
     desc: '设置星铁默认攻略'
   }
 ]}

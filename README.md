@@ -8,9 +8,9 @@
 <img src ="https://img.shields.io/github/languages/top/hewang1an/StarRail-plugin?logo=github"/>
 </div>
 
-### 如果您有需求使用喵喵插件的星铁面板可参考issue做修改
+### 如果您有需求使用喵喵插件的星铁面板可使用该项目👇
 
-https://gitee.com/yoimiya-kokomi/miao-plugin/issues/I7EDHN
+[同时使用喵喵星铁面板.js](https://gitee.com/Zyy955/Yunzai-Bot-plugin/blob/main/StarRail.js) from [@Zyy955](https://gitee.com/Zyy955)
 
 ### 交流群
 
@@ -142,7 +142,7 @@ git clone --depth=1 https://github.com/hewang1an/StarRail-plugin.git ./plugins/S
 ## 特别鸣谢♥
 - mihomo.me：提供面板API来源
 - [bietiaop](https://github.com/bietiaop)：编写插件部分渲染以及部分功能
-- [yhs21241](https://github.com/yhs21241/StarRail-plugin-PanelPic)：面板图贡献
+- [香菜](https://gitee.com/yuan_hu_sheng/StarRail-plugin-PanelPic)：面板图贡献
 
 ## 贡献者
 
