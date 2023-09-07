@@ -17,7 +17,7 @@ export class Hkrpg extends plugin {
       dsc: '星穹铁道基本信息',
       /** https://oicqjs.github.io/oicq/#events */
       event: 'message',
-      priority: -114514,
+      priority: 8888,
       rule: [
         {
           /** 命令正则匹配 */

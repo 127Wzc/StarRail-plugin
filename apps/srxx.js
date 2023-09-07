@@ -17,7 +17,7 @@ export class srxx extends plugin {
       name: '星铁插件-角色信息/攻略',
       dsc: '星穹铁道攻略信息数据来自米游社',
       event: 'message',
-      priority: -114514,
+      priority: 8888,
       rule: [
         {
           reg: `^${rulePrefix}(.*)参考面板$`,

@@ -11,7 +11,7 @@ export class help extends plugin {
 			name: '[星铁插件]帮助',
 			dsc: '星铁帮助',
 			event: 'message',
-			priority: 100,
+			priority: 8888,
 			rule: [
 				{
 					reg: `^${rulePrefix}帮助$`,

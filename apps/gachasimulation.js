@@ -19,7 +19,7 @@ export default class Gacha extends plugin {
       name: '星穹铁道',
       dsc: '星穹铁道抽卡插件',
       event: 'message',
-      priority: -114514,
+      priority: 8888,
       rule: [
         {
           /** 命令正则匹配 */

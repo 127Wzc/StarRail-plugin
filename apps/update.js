@@ -30,7 +30,7 @@ export class Update extends plugin {
     super({
       name: '星铁更新插件',
       event: 'message',
-      priority: 1000,
+      priority: 8888,
       rule: [
         {
           reg: `^${rulePrefix}(插件)?(强制)?更新$`,

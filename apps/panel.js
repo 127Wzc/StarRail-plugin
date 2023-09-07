@@ -47,7 +47,7 @@ export class Panel extends plugin {
           fnc: 'apiList'
         },
         {
-          reg: '^#?原图$',
+          reg: `^${rulePrefix}原图$`,
           fnc: 'origImg'
         }
       ]

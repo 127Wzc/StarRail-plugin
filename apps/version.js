@@ -8,7 +8,7 @@ export class StarRailManagement extends plugin {
       name: 'StarRail-Plugin更新日志',
       dsc: 'StarRail-Plugin更新日志',
       event: 'message',
-      priority: 400,
+      priority: 8888,
       rule: [
         {
           reg: `^${rulePrefix}(插件)?更新日志$`,

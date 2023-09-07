@@ -26,59 +26,59 @@ export const helpCfg = {
 
 export const helpList = [
   {
-  group: '星铁角色信息(支持#星铁,*前缀)',
+  group: '星铁角色信息(支持*sr)',
   list: [
     {
       icon: 78,
-      title: '*绑定uid(uid)',
+      title: '*sr绑定uid(uid)',
       desc: '绑定你的星铁uid'
     }, {
       icon: 63,
-      title: '*更新面板(uid)',
+      title: '*sr更新面板(uid)',
       desc: '更新星铁面板数据'
     }, {
       icon: 66,
-      title: '*希儿面板(uid)',
+      title: '*sr希儿面板(uid)',
       desc: '星铁角色面板详情'
     }, {
       icon: 107,
-      title: '*(上期)宇宙(uid)',
+      title: '*sr(上期)宇宙(uid)',
       desc: '模拟宇宙信息(可带uid查询)'
     }, {
       icon: 98,
-      title: '*收入',
+      title: '*sr收入',
       desc: '月度星琼统计'
     }, {
       icon: 95,
-      title: '*体力(pro)',
+      title: '*sr体力(pro)',
       desc: '体力和委托信息'
     }, {
       icon: 75,
-      title: '*卡片',
+      title: '*sr卡片',
       desc: '角色卡片(仅支持绑定ck查询)'
     }, {
       icon: 110,
-      title: '*深渊',
+      title: '*sr深渊',
       desc: '忘却之庭信息'
     }, {
       icon: 91,
-      title: '*在线时长',
+      title: '*sr在线时长',
       desc: '根据体力数据统计在线时长'
     }, {
       icon: 97,
-      title: '*抽卡帮助',
+      title: '*sr抽卡帮助',
       desc: '绑定抽卡链接教程'
     }, {
       icon: 97,
-      title: '*抽卡链接',
+      title: '*sr抽卡链接',
       desc: '绑定星铁抽卡链接'
     }, {
       icon: 97,
-      title: '*更新跃迁/抽卡',
+      title: '*sr更新跃迁/抽卡',
       desc: '更新本地抽卡记录'
     }, {
       icon: 97,
-      title: '*跃迁分析(角色|光锥|常驻)',
+      title: '*sr跃迁分析(角色|光锥|常驻)',
       desc: '抽卡分析默认为总览'
     }
   ]
@@ -87,43 +87,43 @@ export const helpList = [
       list :[
     {
       icon: 106,
-      title: '*希儿攻略(0 | 1 | 2 | 3 | 4 |5)',
+      title: '*sr希儿攻略(0 | 1 | 2 | 3 | 4 |5)',
       desc: '星铁角色攻略'
     }, {
       icon: 106,
-      title: '*攻略',
+      title: '*sr攻略',
       desc: '星铁全角色攻略'
     }, {
       icon: 100,
-      title: '*抽卡(角色|常驻|光锥)',
+      title: '*sr抽卡(角色|常驻|光锥)',
       desc: '模拟星穹铁道抽卡'
     }, {
       icon: 96,
-      title: '*兑换码',
+      title: '*sr兑换码',
       desc: '星铁前瞻直播兑换码'
     }, {
       icon: 98,
-      title: '*预估',
+      title: '*sr预估',
       desc: '预估当前版本或下版本星琼'
     }, {
       icon: 104,
-      title: '*xx参考面板(帮助)',
+      title: '*srxx参考面板(帮助)',
       desc: '星铁角色参考面板(帮助)'
     }, {
       icon: 111,
-      title: '*强度榜',
+      title: '*sr强度榜',
       desc: '星铁角色强度榜(仅供参考)'
     }, {
       icon: 99,
-      title: '*收益曲线',
+      title: '*sr收益曲线',
       desc: '星铁各属性收益曲线(仅供参考)'
     }, {
       icon: 102,
-      title: '*商店光锥推荐',
+      title: '*sr商店光锥推荐',
       desc: '跃迁商店推荐兑换光锥(仅供参考)'
     }, {
       icon: 108,
-      title: '*深渊攻略',
+      title: '*sr深渊攻略',
       desc: '模拟宇宙阵容推荐(仅供参考)'
     }
   ]
@@ -132,23 +132,23 @@ export const helpList = [
   auth: 'master',
   list: [{
     icon: 85,
-    title: '*(强制)更新',
+    title: '*sr(强制)更新',
     desc: '(强制)更新星铁插件'
   }, {
     icon: 85,
-    title: '*更新日志',
+    title: '*sr更新日志',
     desc: '星铁插件更新日志'
   } ,{
     icon: 85,
-    title: '*切换面板(1 | 2 | 3)',
+    title: '*sr切换面板(1 | 2 | 3)',
     desc: '切换面板服务'
   } ,{
     icon: 85,
-    title: '*(强制)图像更新(github)',
+    title: '*sr(强制)图像更新(github)',
     desc: '安装扩展图，需要一定时间，请勿重复执行'
   }, {
     icon: 85,
-    title: '*设置默认攻略(0 | 1 | 2 | 3 | 4 |5)',
+    title: '*sr设置默认攻略(0 | 1 | 2 | 3 | 4 |5)',
     desc: '设置星铁默认攻略'
   }
 ]}

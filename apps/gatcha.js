@@ -13,7 +13,7 @@ export class Gatcha extends plugin {
       dsc: '星铁plug抽卡分析',
       /** https://oicqjs.github.io/oicq/#events */
       event: 'message',
-      priority: -114514,
+      priority: 8888,
       rule: [
         {
           reg: `^${rulePrefix}抽卡链接(绑定)?$`,
