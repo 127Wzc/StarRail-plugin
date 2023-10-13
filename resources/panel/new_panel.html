@@ -108,7 +108,7 @@
                     {{MathPro.floor10(properties.criticalDamage*100,-1)}}%
                 </div>
             </div>
-            <!-- <div class="attribute-item">
+            <div class="attribute-item">
                 <div class="icon">
                     <img src="{{iconPath}}/IconStatusResistance.png">
                 </div>
@@ -116,7 +116,7 @@
                 <div class="value">
                     {{MathPro.floor10(properties.statusResistance*100,-1)}}%
                 </div>
-            </div> -->
+            </div>
             <div class="attribute-item">
                 <div class="icon">
                     <img src="{{iconPath}}/IconStatusProbability.png">
@@ -411,22 +411,22 @@ const dom = document.querySelector('.skill_tree');
           };
           if ( level ) {
             ctx.strokeStyle = "rgb(0,0,0)";
-            ctx.font = "40px SR";
+            ctx.font = "60px SR";
             ctx.lineWidth = 10;
             ctx.textAlign = "center";
             ctx.strokeText(
               `${ level.toString() }${ max_level ? `/${ max_level }` : "" }`,
               x + width / 2,
-              y + height + 40,
-              width
+              y + height + 60,
+              width * 2
             );
             ctx.fillStyle = "rgb(255,255,255)";
             // 文字居中
             ctx.fillText(
               `${ level.toString() }${ max_level ? `/${ max_level }` : "" }`,
               x + width / 2,
-              y + height + 40,
-              width
+              y + height + 60,
+              width * 2
             );
           }
           if ( lock ) {
@@ -494,6 +494,12 @@ const dom = document.querySelector('.skill_tree');
       }
     }
   };
-  draw();
+  const SR = new FontFace( 'SR', 'url({{pluResPath}}/common/font/SR.ttf)' );
+  SR.load().then( font => {
+    document.fonts.add( font );
+  } ).then( () => {
+    draw();
+  } )
+
 </script>
 {{/block}}
