@@ -1,3 +1,4 @@
+
 import plugin from '../../../lib/plugins/plugin.js'
 import MysSRApi from '../runtime/MysSRApi.js'
 import User from '../../genshin/model/user.js'
@@ -22,9 +23,12 @@ export class Month extends plugin {
       ]
     })
     this.User = new User(e)
+
   }
 
   async month (e) {
+    this.e.isSr = true
+    this.isSr = true
     let user = this.e.user_id
     let ats = e.message.filter(m => m.type === 'at')
     if (ats.length > 0 && !e.atBot) {
@@ -33,7 +37,7 @@ export class Month extends plugin {
       this.User = new User(this.e)
     }
     let userData = await this.miYoSummerGetUid()
-    let uid = await redis.get(`STAR_RAILWAY:UID:${user}`) || this.e.user?.getUid('sr')
+    let uid = await redis.get(`STAR_RAILWAY:UID:${user}`)
     if (userData.game_uid) {
       uid = userData.game_uid
     } else {
