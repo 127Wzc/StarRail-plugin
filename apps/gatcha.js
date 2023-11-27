@@ -5,6 +5,8 @@ import { rulePrefix } from '../utils/common.js'
 import runtimeRender from '../common/runtimeRender.js'
 import GatchaData from '../utils/gatcha/index.js'
 import setting from '../utils/setting.js'
+import cfg from '../../../lib/config/config.js'
+import NoteUser from '../../genshin/model/mys/NoteUser.js'
 
 export class Gatcha extends plugin {
   constructor (e) {
@@ -58,11 +60,36 @@ export class Gatcha extends plugin {
       return false
     }
     try {
-      const uid = await redis.get(`STAR_RAILWAY:UID:${this.e.user_id}`)
+      let userId = e.user_id
+      const ats = e.message.filter(m => m.type === 'at')
+      if (ats.length > 0 && !e.atBot) {
+        userId = ats[0].qq
+      }
+      let uid, user
+      if (cfg.package.name != 'yunzai') {
+        if (ats.length > 0) {
+          if (!e.atBot) {
+            let { at = '' } = e
+            user = await NoteUser.create(at)
+          } else if (ats.length > 1) {
+            for (let i = ats.length - 1; i >= 0; i--) {
+              if (ats[i].qq != e.bot.uin &&
+                  ats[i].qq != e.bot.tiny_id) {
+                let at = ats[i].qq
+                user = await NoteUser.create(at)
+                break
+              }
+            }
+          }
+        } else {
+          user = await NoteUser.create(userId)
+        }
+        uid = user?.getUid('sr') || ''
+      }
+      uid = uid || await redis.get(`STAR_RAILWAY:UID:${this.e.user_id}`)
       let key = this.e.msg.trim()
       key = key.split('authkey=')[1].split('&')[0]
-      let user = this.e.user_id
-      await redis.set(`STAR_RAILWAY:AUTH_KEY:${user}`, key)
+      await redis.set(`STAR_RAILWAY:AUTH_KEY:${userId}`, key)
       await this.reply('绑定成功，正在获取数据', false)
       console.log('uid', uid)
       await redis.set(`STAR_RAILWAY:GATCHA_LASTTIME:${uid}`, '')
@@ -92,13 +119,34 @@ export class Gatcha extends plugin {
   }
 
   async updateGatcha (e) {
-    let user = e.user_id
+    let userId = e.user_id
     const ats = e.message.filter(m => m.type === 'at')
     if (ats.length > 0 && !e.atBot) {
-      user = ats[0].qq
+      userId = ats[0].qq
+    }
+    let uid, user
+    if (cfg.package.name != 'yunzai') {
+      if (ats.length > 0) {
+        if (!e.atBot) {
+          let { at = '' } = e
+          user = await NoteUser.create(at)
+        } else if (ats.length > 1) {
+          for (let i = ats.length - 1; i >= 0; i--) {
+            if (ats[i].qq != e.bot.uin &&
+                ats[i].qq != e.bot.tiny_id) {
+              let at = ats[i].qq
+              user = await NoteUser.create(at)
+              break
+            }
+          }
+        }
+      } else {
+        user = await NoteUser.create(userId)
+      }
+      uid = user?.getUid('sr') || ''
     }
 
-    const uid = await redis.get(`STAR_RAILWAY:UID:${user}`)
+    uid = uid || await redis.get(`STAR_RAILWAY:UID:${userId}`)
     if (!uid) {
       return e.reply('未绑定uid，请发送#星铁绑定uid进行绑定')
     }
@@ -118,7 +166,7 @@ export class Gatcha extends plugin {
       await e.reply(`正在获取[${uid}]的跃迁数据...`)
       const gatcha = new GatchaData(uid, authKey)
       await gatcha.updateData()
-      const msg = common.makeForwardMsg(e, ['跃迁数据获取成功，你可以使用：', '*跃迁分析\n*角色分析\n*光锥分析\n*常驻分析', '查看具体的跃迁数据'])
+      const msg = await common.makeForwardMsg(e, ['跃迁数据获取成功，你可以使用：', '*跃迁分析\n*角色分析\n*光锥分析\n*常驻分析', '查看具体的跃迁数据'])
       await e.reply(msg)
     } catch (error) {
       console.log(error)
