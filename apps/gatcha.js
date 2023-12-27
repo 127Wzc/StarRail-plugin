@@ -59,6 +59,7 @@ export class Gatcha extends plugin {
       await this.reply('请私聊发送抽卡链接', false, { at: true })
       return false
     }
+    let e = this.e
     try {
       let userId = e.user_id
       const ats = e.message.filter(m => m.type === 'at')
@@ -97,7 +98,8 @@ export class Gatcha extends plugin {
         logger.info('绑定抽卡链接任务完成')
       })
     } catch (error) {
-      this.reply('抽卡链接错误，请检查链接重新绑定', false)
+      logger.error(error)
+      this.reply('抽卡链接错误，请检查日志', false)
     }
     this.finish('doBindAuthKey')
   }
