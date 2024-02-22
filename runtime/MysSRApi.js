@@ -2,8 +2,8 @@ import MysApi from '../../genshin/model/mys/mysApi.js'
 import md5 from 'md5'
 import _ from 'lodash'
 import crypto from 'crypto'
-import SRApiTool from "./SRApiTool.js";
-const DEVICE_ID = randomString(32).toUpperCase()
+import SRApiTool from './SRApiTool.js'
+// const DEVICE_ID = randomString(32).toUpperCase()
 const DEVICE_NAME = randomString(_.random(1, 10))
 export default class MysSRApi extends MysApi {
   constructor (uid, cookie, option = {}) {
@@ -13,9 +13,18 @@ export default class MysSRApi extends MysApi {
     // this.isSr = true
     // this.server = 'hkrpg_cn'
     this.apiTool = new SRApiTool(uid, this.server)
+    if (typeof this.cookie != 'string' && this.cookie) {
+      let ck = this.cookie[Object.keys(this.cookie).filter(k => this.cookie[k].ck)[0]]
+      this._device = ck?.device_id || ck?.device
+      this.cookie = ck?.ck
+    }
+    if (!this._device) {
+      this._device = crypto.randomUUID()
+    }
   }
 
   getUrl (type, data = {}) {
+    data.deviceId = this._device
     let urlMap = this.apiTool.getUrlMap(data)
     if (!urlMap[type]) return false
     let { url, query = '', body = '', noDs = false, dsSalt = '' } = urlMap[type]
@@ -28,19 +37,10 @@ export default class MysSRApi extends MysApi {
       // 兼容喵崽
       this._device_fp = { data: { device_fp: data.deviceFp } }
     }
-    if (typeof this.cookie == 'string') {
-      headers.cookie = this.cookie
-    } else if (this.cookie) {
-      let cookie = this.cookie[Object.keys(this.cookie).filter(k => this.cookie[k].ck)[0]]
-      this.cookie = cookie?.ck
-      headers.cookie = cookie?.ck
-      this.deviceId = cookie?.device_id
-    }
-    if (!this.deviceId) {
-      this.deviceId = crypto.randomUUID()
-    }
-    if (this.deviceId) {
-      headers['x-rpc-device_id'] = this.deviceId
+    headers.cookie = this.cookie
+
+    if (this._device) {
+      headers['x-rpc-device_id'] = this._device
     }
     switch (dsSalt) {
       case 'web': {
@@ -64,7 +64,7 @@ export default class MysSRApi extends MysApi {
         // DS: this.getDS2(),
         'x-rpc-sys_version': '12',
         'x-rpc-channel': 'mihoyo',
-        'x-rpc-device_id': DEVICE_ID,
+        'x-rpc-device_id': this._device,
         'x-rpc-device_name': DEVICE_NAME,
         'x-rpc-device_model': 'Mi 10',
         Host: 'api-takumi.mihoyo.com'
@@ -75,9 +75,9 @@ export default class MysSRApi extends MysApi {
     }
     if (noDs) {
       delete headers.DS
-      if (this.deviceId) {
+      if (this._device) {
         body = JSON.parse(body)
-        body.device_id = this.deviceId
+        body.device_id = this._device
         body = JSON.stringify(body)
       }
     }
@@ -160,7 +160,7 @@ export default class MysSRApi extends MysApi {
    * @param data 查询请求的数据
    * @returns {Promise<*|boolean>}
    */
-  async checkCode (e, res, type, data) {
+  async checkCode (e, res, type, data = {}) {
     if (!res || !e) {
       this.e.reply('米游社接口请求失败，暂时无法查询')
       return false
@@ -171,6 +171,7 @@ export default class MysSRApi extends MysApi {
     switch (res.retcode) {
       case 0:
         break
+      case 10035:
       case 1034: {
         let handler = this.e.runtime?.handler || {}
 
@@ -179,7 +180,7 @@ export default class MysSRApi extends MysApi {
           logger.mark(`[米游社sr查询失败][uid:${this.uid}][qq:${this.userId}] 遇到验证码，尝试调用 Handler mys.req.err`)
           res = await handler.call('mys.req.err', this.e, { mysApi: this, type, res, data, mysInfo: this }) || res
         }
-        if (!res || res?.retcode === 1034) {
+        if (!res || res?.retcode === 1034 || res?.retcode === 10035) {
           logger.mark(`[米游社查询失败][uid:${this.uid}][qq:${this.userId}] 遇到验证码`)
           this.e.reply('米游社查询遇到验证码，请稍后再试')
         }
