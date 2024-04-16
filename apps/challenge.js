@@ -18,15 +18,15 @@ export class Challenge extends plugin {
       priority: setting.getConfig('gachaHelp').noteFlag ? 5 : 500,
       rule: [
         {
-          reg: `^${rulePrefix}(上期|本期)?(深渊)`,
+          reg: `^(\\*||sr)(上期|本期)?(深渊)`,
           fnc: 'challenge'
         },
         {
-          reg: `^${rulePrefix}(上期|本期)?(忘却|忘却之庭|混沌|混沌回忆)`,
+          reg: `^(\\*||sr)(上期|本期)?(忘却|忘却之庭|混沌|混沌回忆)`,
           fnc: 'challengeForgottenHall'
         },
         {
-          reg: `^${rulePrefix}(上期|本期)?(虚构|虚构叙事)`,
+          reg: `^(\\*||sr)(上期|本期)?(虚构|虚构叙事)`,
           fnc: 'challengeStory'
         }
       ]
