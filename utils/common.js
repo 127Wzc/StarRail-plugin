@@ -2,7 +2,7 @@ import { exec} from 'child_process'
 import User from '../../genshin/model/user.js'
 import { getStoken} from './authkey.js'
 
-export const rulePrefix = '((#sr|\\*)?(sr))'
+export const rulePrefix = '((#|\\*)?(sr))'
 
 export async function checkPnpm () {
   let npm = 'npm'
