@@ -2,6 +2,7 @@ import _ from 'lodash'
 import moment from 'moment'
 import fetch from 'node-fetch'
 import runtimeRender from '../common/runtimeRender.js'
+import User from '../../genshin/model/user.js'
 import MysSRApi from '../runtime/MysSRApi.js'
 import { getCk, rulePrefix } from '../utils/common.js'
 import setting from '../utils/setting.js'
@@ -21,12 +22,12 @@ export class Note extends plugin {
         }
       ]
     })
+    this.User = new User(e)
   }
 
   async note (e) {
-    // const isPro = /pro/.test(e.msg)
+    const isPro = /pro/.test(e.msg)
     // 20230907 体力默认改用小组件
-    const isPro = true
     this.e.isSr = true
     this.isSr = true
     let user = this.e.user_id
@@ -34,15 +35,12 @@ export class Note extends plugin {
     if (ats.length > 0 && !e.atBot) {
       user = ats[0].qq
       this.e.user_id = user
+      this.User = new User(this.e)
     }
     let userData = await this.miYoSummerGetUid()
-    let uid = await redis.get(`STAR_RAILWAY:UID:${user}`)
-    if (userData.game_uid) {
-      uid = userData.game_uid
-    } else {
-      await e.reply('当前使用的ck无星穹铁道角色，如绑定多个ck请尝试切换ck')
-      return false
-    }
+    let uid = e.msg.match(/\d+/)?.[0]
+    await this.miYoSummerGetUid()
+    uid = uid || (await redis.get(`STAR_RAILWAY:UID:${user}`)) || this.e.user?.getUid('sr')
     if (!uid) {
       await e.reply('尚未绑定uid,请发送#星铁绑定uid进行绑定')
       return false
