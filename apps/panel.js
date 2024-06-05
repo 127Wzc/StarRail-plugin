@@ -41,7 +41,7 @@ export class Panel extends plugin {
       dsc: '星穹铁道面板信息',
       /** https://oicqjs.github.io/oicq/#events */
       event: 'message',
-      priority: 1,
+      priority: 114514,
       rule: [
         {
           reg: `^${rulePrefix}(.+)面板(更新)?(.*)`,
