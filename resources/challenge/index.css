@@ -135,6 +135,7 @@ img.rogue-star-small {
 
 .detail-node-title, .detail-node-score {
   margin-top: 16px;
+  align-self: flex-end;
 }
 
 .detail-node-title span {
