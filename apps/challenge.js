@@ -160,33 +160,49 @@ export class Challenge extends plugin {
         }
       })
     }
-    await runtimeRender(e, '/challenge/index.html', {
+    return {
       data,
       uid,
       challengeType,
       type: scheduleType
-    })
+    }
   }
 
   async challengeForgottenHall (e) {
-    await this.queryChallenge(e, 2)
+    await e.reply('正在获取忘却之庭数据，请稍后……')
+    let res = await this.queryChallenge(e, 2)
+    await runtimeRender(e, '/challenge/index.html', res)
   }
 
   async challengeStory (e) {
-    await this.queryChallenge(e, 1)
+    await e.reply('正在获取虚构叙事数据，请稍后……')
+    let res = await this.queryChallenge(e, 1)
+    await runtimeRender(e, '/challenge/index.html', res)
   }
 
   async challengeBoss (e) {
-    await this.queryChallenge(e, 0)
+    await e.reply('正在获取末日幻影数据，请稍后……')
+    let res = await this.queryChallenge(e, 0)
+    await runtimeRender(e, '/challenge/index.html', res)
+  }
+
+  async challengeAll (e) {      
+    let resHall = await this.queryChallenge(e, 2)
+    let resStory = await this.queryChallenge(e, 1)
+    let resBoss = await this.queryChallenge(e, 0)
+    return { hall: resHall, story: resStory, boss: resBoss }
   }
 
   async challenge (e) {
-    for (let types of [0, 1, 2])
-      await this.queryChallenge(e, types)
+    await e.reply('正在获取全部深渊数据，请稍后……')
+    let res = await this.challengeAll(e)
+    await runtimeRender(e, '/challenge/index_all.html', res)
   }
 
   async challengeCurrent (e) {
-    await this.queryChallenge(e, this.getCurrentChallengeType())
+    await e.reply('正在获取最新深渊数据，请稍后……')
+    let res = await this.queryChallenge(e, this.getCurrentChallengeType())
+    await runtimeRender(e, '/challenge/index.html', res)
   }
 
   async miYoSummerGetUid () {
